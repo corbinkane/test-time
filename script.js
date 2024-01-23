@@ -1,60 +1,60 @@
-// //buttons
+//
 // const startBtn = document.querySelector('.startBtn')
  
-// Define your questions and answers
+// questions
 const questions = [
     {
       question: "Is JavaScript Case Sensitive?",
-      choices: ["Yes", "No", "I have no idea"],
+      choices: ["Yes", "No", "I have no idea", "Maybe"],
       answer: "Yes"
     },
 
     {
       question: "How are comments added to JavaScript?",
-      choices: ["//", "( )", "[]"],
+      choices: [ "( )", "[]", "//", "Insert comment here"],
       answer: "//"
     },
     
     {
-        question: "What is the capital of France?",
-        choices: ["Paris", "London", "Berlin"],
-        answer: "Paris"
+        question: "Which of these is used to create a variable?",
+        choices: ["declare", "create", "=", "var"],
+        answer: "var"
     },
     
     {
-        question: "What is the largest planet in our solar system?",
-        choices: ["Mars", "Jupiter", "Venus"],
-        answer: "Jupiter"
+        question: "A text value is called what?",
+        choices: ["content", "block", "value", "string"],
+        answer: "string"
     },
     
     {
-        question: "What is the capital of France?",
-        choices: ["Paris", "London", "Berlin"],
-        answer: "Paris"
+        question: "What values can Booleans have?",
+        choices: ["Yes and No", "True and False", "CConfirm and Deny", "hippo and potomas"],
+        answer: "True and False"
     },
     
     {
-        question: "What is the largest planet in our solar system?",
-        choices: ["Mars", "Jupiter", "Venus"],
-        answer: "Jupiter"
+        question: "A variable inside a function is ____?",
+        choices: ["Local", "Global", "Inside", "Outside"],
+        answer: "Local"
     },
     
     {
-        question: "What is the capital of France?",
-        choices: ["Paris", "London", "Berlin"],
-        answer: "Paris"
+        question: "Variable outside a function are considered ____?",
+        choices: ["Local", "Global", "Inside", "Outside"],
+        answer: "Global"
     },
     
     {
-        question: "What is the largest planet in our solar system?",
-        choices: ["Mars", "Jupiter", "Venus"],
-        answer: "Jupiter"
+        question: "What do you get if you add a string and numbers together?",
+        choices: ["Undefined", "Number", "String", "Nothing"],
+        answer: "String"
     },
     
-    // Add more questions here...
+   
   ];
   
-  // Set the initial timer value and score
+  // Set the initial values 
   let timer = 60;
   let score = 0;
   let currentQuestionIndex = 0;
@@ -71,11 +71,11 @@ const questions = [
       button.textContent = choice;
       button.addEventListener("click", function() {
         if (choice === question.answer) {
-          // Correct answer
-          score++; // Increase the score by 1
+         
+          score++; 
         } else {
-          // Wrong answer
-          timer -= 10; // Deduct 10 seconds from the timer
+         
+          timer -= 10; 
         }
         
         // Move to the next question
@@ -84,7 +84,7 @@ const questions = [
         if (currentQuestionIndex < questions.length) {
           displayQuestion(questions[currentQuestionIndex]);
         } else {
-          // No more questions, display the final result
+          
           displayResult();
         }
       });
@@ -95,7 +95,7 @@ const questions = [
   
   // Function to start the quiz
   function startQuiz() {
-    // Hide the start button
+    
     document.getElementById("start-btn").style.display = "none";
     
     // Start the timer
@@ -105,100 +105,54 @@ const questions = [
       
       if (timer < 0) {
         clearInterval(timerInterval);
-        alert('times up :(')  // Time's up, do something here
+        alert('times up :(')  // Time's up
         displayResult();
       }
     }, 1000);
     
-    // Display the first question
+   
     displayQuestion(questions[0]);
   }
   
-  // Function to display the final result
+  // Function to display the score
   function displayResult() {
     document.getElementById("question-container").style.display = "none";
     document.getElementById("timer").textContent = "Time's up!";
     document.getElementById("score").textContent = score;
-    // Do something else with the score, like showing a leaderboard or saving it to a database
+   //record highscores here need to code
+
+
   }
   
-  // Add event listener to the start button
+//highscores need help 
+
+const scoreForm = document.getElementById('scoreForm');
+
+scoreForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+});
+
+
+const nameInput = document.getElementById('name');
+const name = nameInput.value;
+
+
+
+localStorage.setItem('name', name);
+localStorage.setItem('score', score);
+
+const lastSubmissionName = localStorage.getItem('name');
+const lastSubmissionScore = localStorage.getItem('score');
+
+// Update the HTML to display the last submission
+document.getElementById('score').textContent = `Name: ${lastSubmissionName}, Score: ${lastSubmissionScore}`;
+
+
+
+ 
   document.getElementById("start-btn").addEventListener("click", startQuiz);
 
-//  function onButtonClick() {
-//     alert('Start Test!');
-//   }
-  
-//   const button = document.querySelector('button');
-//   button.addEventListener('click', onButtonClick);
-
- //starts test timer
-//   function startTimer(){
-//     var counter = 60;
-//     setInterval(function() {
-//       counter--;
-//       if (counter >= 0) {
-//         span = document.getElementById("count");
-//         span.innerHTML = counter;
-//       }
-//       if (counter === 0) {
-//           alert('sorry, out of time');
-//           clearInterval(counter);
-//       }
-//     }, 1000);
-    
-//   }
-//   function start()
-//   {
-//       document.getElementById("count").style="color:black;";
-//       startTimer();
-      
-//   };
-
-//   let questions = [
-//     {
-//         number: 1,
-//         question: 'question',
-//         answer: 'answer',
-//         options: [
-//             'option 1',
-//             'option 2',
-//             'option 3',
-//             'option 4',
-//         ]
-//     }
-
-//   ]
-  
-// function showQuestions(){
-    
-// }
-
-// function startTest() {
-//      alert('test started');
-//   }
-//   console.log(startTest)
-//   console.log(startBtn)
-// startBtn.addEventListener('click', onButtonClick)
-
-// var newBtn = document.createElement('button');
-// newBtn.textContent = 'Start Test';
-// document.body.appendChild(newBtn);
-
-// function onButtonClick() {
-//     alert('Button clicked!');
-//   }
-  
-//   const button = document.querySelector('button');
-//   button.addEventListener('click', onButtonClick);
-  
-//   const newButton = document.createElement('button');
-//   newButton.textContent = 'Click me!';
-//   document.body.appendChild(newButton);
-  
-//   newButton.addEventListener('click', () => {
-//     alert('New button clicked!');
-//   });
 
 
 
