@@ -1,5 +1,3 @@
-//
-// const startBtn = document.querySelector('.startBtn')
  
 // questions
 const questions = [
@@ -29,7 +27,7 @@ const questions = [
     
     {
         question: "What values can Booleans have?",
-        choices: ["Yes and No", "True and False", "CConfirm and Deny", "hippo and potomas"],
+        choices: ["Yes and No", "True and False", "Confirm and Deny", "hippo and potomas"],
         answer: "True and False"
     },
     
@@ -50,8 +48,6 @@ const questions = [
         choices: ["Undefined", "Number", "String", "Nothing"],
         answer: "String"
     },
-    
-   
   ];
   
   // Set the initial values 
@@ -76,8 +72,7 @@ const questions = [
         } else {
          
           timer -= 10; 
-        }
-        
+        }   
         // Move to the next question
         currentQuestionIndex++;
         
@@ -94,10 +89,8 @@ const questions = [
   }
   
   // Function to start the quiz
-  function startQuiz() {
-    
+  function startQuiz() { 
     document.getElementById("start-btn").style.display = "none";
-    
     // Start the timer
     const timerInterval = setInterval(function() {
       document.getElementById("timer").textContent = timer;
@@ -105,48 +98,90 @@ const questions = [
       
       if (timer < 0) {
         clearInterval(timerInterval);
-        alert('times up :(')  // Time's up
+       //lets maybe add this later alert('times up :(')  // Time's up
         displayResult();
       }
-    }, 1000);
-    
-   
+    }, 1000);  
     displayQuestion(questions[0]);
   }
-  
   // Function to display the score
   function displayResult() {
     document.getElementById("question-container").style.display = "none";
     document.getElementById("timer").textContent = "Time's up!";
     document.getElementById("score").textContent = score;
-   //record highscores here need to code
+   // this is where scores are saved
+let highScores = [];
+
+// Function to save high score
+function saveHighScore() {
+ const nameInput = document.getElementById('name'); // or prompt("Enter your name:")
+ const playerName = nameInput.value;
+ const playerScore = 100; //placeholder this represents a score of 100 not sure how to make it display the actual
+localStorage.setItem('highscores', JSON.stringify(highScores));
+ 
+  const score = {
+    name: playerName,
+    score: playerScore
+  };
+
+  highScores.push(score);
+  
+  highScores.sort((a, b) => b.score - a.score);
+
+  updateScoreboard();
+}
+
+// Function to update the scoreboard
+function updateScoreboard() {
+  const scoresList = document.getElementById("scoresList");
+
+  scoresList.innerHTML = "";
+
+  // puts scores in order
+  for (let i = 0; i < highScores.length; i++) {
+    const score = highScores[i];
+    const listItem = document.createElement("li");
+    listItem.textContent = `${score.name}: ${score.score}`;
+    scoresList.appendChild(listItem);
+  }
+}
+
+saveHighScore();
 
 
   }
-  
+ 
+  // reset btn
+  const restartButton = document.getElementById("restartButton");
+
+  restartButton.addEventListener("click", function() {
+    location.reload(); 
+  });
+
+
 //highscores need help 
 
-const scoreForm = document.getElementById('scoreForm');
+// const scoreForm = document.getElementById('scoreForm');
 
-scoreForm.addEventListener('submit', function(event) {
-  event.preventDefault();
+// scoreForm.addEventListener('submit', function(event) {
+//   event.preventDefault();
 
-});
-
-
-const nameInput = document.getElementById('name');
-const name = nameInput.value;
+// });
 
 
+// const nameInput = document.getElementById('name');
+// const name = nameInput.value;
 
-localStorage.setItem('name', name);
-localStorage.setItem('score', score);
 
-const lastSubmissionName = localStorage.getItem('name');
-const lastSubmissionScore = localStorage.getItem('score');
 
-// Update the HTML to display the last submission
-document.getElementById('score').textContent = `Name: ${lastSubmissionName}, Score: ${lastSubmissionScore}`;
+// localStorage.setItem('name', name);
+// localStorage.setItem('score', score);
+
+// const lastSubmissionName = localStorage.getItem('name');
+// const lastSubmissionScore = localStorage.getItem('score');
+
+// // Update the HTML to display the last submission
+// document.getElementById('score').textContent = `Name: ${lastSubmissionName}, Score: ${lastSubmissionScore}`;
 
 
 
