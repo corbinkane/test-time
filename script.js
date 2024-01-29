@@ -64,7 +64,7 @@ function displayQuestion(question) {
     question.choices.forEach(choice => {
         const li = document.createElement("li");
         const button = document.createElement("button");
-        button.textContent = choice; 
+        button.textContent = choice;
         button.classList.add("btn")
         button.classList.add("btn-secondary")
         button.addEventListener("click", function () {
@@ -100,7 +100,7 @@ function startQuiz() {
 
         if (timer < 0) {
             clearInterval(timerInterval);
-            //lets maybe add this later alert('times up :(')  // Time's up
+          
             displayResult();
         }
     }, 1000);
@@ -120,14 +120,12 @@ function displayResult() {
 
 }
 
+// Function to save high score
 function saveHighScore() {
-   
-    
-        // Function to save high score
 
-        const nameInput = document.getElementById('name'); // or prompt("Enter your name:")
+    const nameInput = document.getElementById('name');
     const playerName = nameInput.value;
-    // const score = 100; //placeholder this represents a score of 100 not sure how to make it display the actual didnt need this part 
+
 
 
     const playerData = {
@@ -158,11 +156,6 @@ function updateScoreboard() {
 }
 
 
-
-
-  
-
-// reset btn take a look at actibity 23 in week six they have a back button that may help you out also take a peak at monday class think the date is 1/21/24
 const restartButton = document.getElementById("restartButton");
 
 restartButton.addEventListener("click", function () {
@@ -174,29 +167,6 @@ const submitButton = document.getElementById('submitButton')
 submitButton.addEventListener('click', function () {
     saveHighScore()
 })
-//highscores need help 
-
-// const scoreForm = document.getElementById('scoreForm');
-
-// scoreForm.addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-// });
-
-
-// const nameInput = document.getElementById('name');
-// const name = nameInput.value;
-
-
-
-// localStorage.setItem('name', name);
-// localStorage.setItem('score', score);
-
-// const lastSubmissionName = localStorage.getItem('name');
-// const lastSubmissionScore = localStorage.getItem('score');
-
-// // Update the HTML to display the last submission
-// document.getElementById('score').textContent = `Name: ${lastSubmissionName}, Score: ${lastSubmissionScore}`;
 
 
 
